@@ -1,5 +1,3 @@
-__author__ = 'nonamenix'
-
 from lxml import etree
 
 
