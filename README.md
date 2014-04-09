@@ -1,7 +1,7 @@
 Text Generator - Yandex Vesna
 =============================
 
-Генератор фикстур для сайта, использующий сервис[vesna.yandex](http://vesna.yandex.ru)
+Генератор фикстур для сайта, использующий сервис [vesna.yandex](http://vesna.yandex.ru)
 
 Пример использования:
 
