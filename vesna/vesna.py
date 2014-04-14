@@ -1,4 +1,5 @@
 from lxml import etree
+from vesna.database import EntriesDatabase
 
 
 class Entry(object):
@@ -25,31 +26,28 @@ class Entry(object):
         return "".join(["<p>%s</p> \n" % p for p in self.paragraphs])
 
     def __repr__(self):
-        return '<Entry object with theme: "%s" at %s>' % (", ".join(self.themes), hex(id(self)))
+        return '<Entry theme="%s" id="%s">' % (", ".join(self.themes), hex(id(self)))
 
 
 class VesnaGenerator(object):
     """ Class for generate crazy text on your site """
 
-    def __init__(self, themes=[]):
-        # Themes
-        self.available_themes = [
-            'astronomy', 'geology', 'gyroscope', 'literature', 'marketing', 'mathematics', 'music', 'polit',
-            'agrobiologia', 'law', 'psychology', 'geography', 'physics', 'philosophy', 'chemistry']
+    # Themes
+    AVAILABLE_THEMES = [
+        'astronomy', 'geology', 'gyroscope', 'literature', 'marketing', 'mathematics', 'music', 'polit',
+        'agrobiologia', 'law', 'psychology', 'geography', 'physics', 'philosophy', 'chemistry']
 
-        self.themes = [theme for theme in themes if theme in self.available_themes] or ['astronomy']
+    def __init__(self, themes=[]):
+        self.themes = [theme for theme in themes if theme in self.AVAILABLE_THEMES] or self.AVAILABLE_THEMES
 
         # Generate yandex vesna url
         self.base_url = "http://vesna.yandex.ru/all.xml"
-        self.url = self.base_url + "?mix=" + \
-                   "%2C".join(self.themes) + \
-                   "=on&".join(self.themes)
-        # Parser
+        self.url = self.base_url + "?mix=" + "%2C".join(self.themes) + "=on&".join(self.themes)
+
+    def generate_entry(self):
         self.parser = etree.HTMLParser(recover=True)
         self.doc = etree.parse(self.url, self.parser)
 
-    def generate_entry(self):
-        # doc.xpath('//td[@colspan="9"]/div')[0]
         topic = self.doc.xpath('//td[@colspan="9"]/div/h1')[0]
         paragraps = self.doc.xpath('//td[@colspan="9"]/div/p')
 
