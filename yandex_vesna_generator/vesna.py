@@ -10,7 +10,9 @@ class Entry(object):
         self.themes = themes
         self.header_wrapper = kwargs.get("header_wrapper", "h2")
         self.paragraph_wrapper = kwargs.get("paragraph_wrapper", "p")
+
         self.slug = slugify(title, to_lower=True)
+        self.description = self.paragraphs[0][0:kwargs.get("description_length", 220)]
 
     def render_html(self):
         html = self.header
