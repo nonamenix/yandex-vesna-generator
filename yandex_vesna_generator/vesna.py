@@ -61,7 +61,7 @@ class VesnaGenerator(object):
         self.doc = etree.parse(self.url, self.parser)
 
         title = self.doc.xpath('/html/body/div[2]/div[1]/div[1]/div/div[2]/div[1]/strong')[0].text
-        title = title.encode('utf-8').replace('Тема: «', '').replace('»', '')
+        title = title.encode('utf-8').replace('Тема: «', '').replace('»', '').decode('utf-8')
         paragraps = self.doc.xpath('/html/body/div[2]/div[1]/div[1]/div/div[2]/div[1]/p')
 
         return Entry(
