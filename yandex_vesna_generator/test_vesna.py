@@ -13,6 +13,10 @@ class Test(unittest.TestCase):
         self.assertNotEqual(entry.body, "")
         self.assertNotEqual(entry.header, "")
 
+    def test_get_method_for_slug(self):
+        entry = self.vesna.generate_entry()
+        self.assertNotEqual(entry['slug'], "")
+
     def test_header_wrapper(self):
         entry = self.vesna.generate_entry()
         self.assertTrue(self.header_wrapper in entry.header)

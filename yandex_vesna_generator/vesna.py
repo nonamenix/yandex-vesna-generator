@@ -34,6 +34,9 @@ class Entry(object):
     def __repr__(self):
         return '<Entry theme="%s" id="%s">' % (", ".join(self.themes), hex(id(self)))
 
+    def __getitem__(self, field):
+        return self.__dict__[field]
+
 
 class VesnaGenerator(object):
     """ Class for generate crazy text on your site """
