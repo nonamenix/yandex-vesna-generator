@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from lxml import etree
+from slugify import slugify
 
 
 class Entry(object):
@@ -9,6 +10,7 @@ class Entry(object):
         self.themes = themes
         self.header_wrapper = kwargs.get("header_wrapper", "h2")
         self.paragraph_wrapper = kwargs.get("paragraph_wrapper", "p")
+        self.slug = slugify(title, to_lower=True)
 
     def render_html(self):
         html = self.header
