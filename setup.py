@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 import os
-import vesna
+import yandex_vesna_generator as vesna
 
 CLASSIFIERS = [
     'Intended Audience :: Developers',
@@ -14,9 +14,9 @@ setup(
     author_email="nonamenix@gmail.com",
     name='yandex-vesna-generator',
     version=vesna.__version__,
-    description='Adds pretty CSS styles for the django CMS admin interface.',
+    description='Generate crazy Lorem Ipsum text on your site.',
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
-    url='http://nonamenix.ru/',
+    url='https://github.com/nonamenix/yandex-vesna-generator',
     license='BSD License',
     platforms=['OS Independent'],
     classifiers=CLASSIFIERS,
